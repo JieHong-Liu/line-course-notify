@@ -13,5 +13,5 @@ header = {
 resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
 json_file = json.loads(resp.text)
 numOfStudent = json_file[0]['Restrict1']
-if int(numOfStudent) <= 30:
+if int(numOfStudent) <= int(json_file[0]['Restrict2']):
     print('現在的選課人數為'+numOfStudent+'，請盡快加簽')
