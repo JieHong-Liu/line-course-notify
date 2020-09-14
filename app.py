@@ -43,4 +43,4 @@ while(yeah):
         yeah = False
         message = '現在的選課人數為'+str(numOfStudent)+' 人，上限制人數為，請盡快加簽'
         lineNotifyMessage(token, message)
-    time.sleep(1)
+    time.sleep(10)
