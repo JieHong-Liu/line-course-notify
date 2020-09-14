@@ -31,6 +31,8 @@ resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
 json_file = json.loads(resp.text)
 numOfStudent = json_file[0]['Restrict1']
 if int(numOfStudent) < 3:  # int(json_file[0]['Restrict2']):
-    print('現在的選課人數為'+numOfStudent+'，請盡快加簽')
-    message = '現在的選課人數為'+numOfStudent+'，請盡快加簽'
+    print('現在的選課人數為'+numOfStudent+' 人，低於限制人數( ' +
+          str(json_file[0]['Restrict1'])+'  ) 人請盡快加簽ください。')
+    message = '現在的選課人數為'+numOfStudent + \
+        ' 人，低於限制人數( ' + str(json_file[0]['Restrict1'])+'  ) 人請盡快加簽ください。'
     lineNotifyMessage(token, message)
