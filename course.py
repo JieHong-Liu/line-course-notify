@@ -1,27 +1,6 @@
-﻿from bs4 import BeautifulSoup
 import json
 import requests
-
-
-def lineNotifyMessage(token, msg):
-    headers = {
-        "Authorization": "Bearer " + token,
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
-
-    massage = {'message': msg}
-    r = requests.post("https://notify-api.line.me/api/notify",
-                      headers=headers, params=massage)
-    return r.status_code
-
-
-# if __name__ == '__main__':
-    # message = '[LINE Notify] 欸！可以用我了'  # 要傳送的訊息內容
-token = 'yRbTBLap7Oxm1wZdy221LH422OlJqpfJRVzO80v5vtg'  # 權杖值
-
-# lineNotifyMessage(token, message)
-
-
+from bs4 import BeautifulSoup
 url = 'https://querycourse.ntust.edu.tw/querycourse/api/courses'
 payload = "{'Semester': '1091', 'CourseNo': 'FE2172701', 'CourseName': '', 'CourseTeacher': '',      'Dimension': '', 'CourseNotes': '','ForeignLanguage': 0, 'OnlyGeneral': 0, 'OnleyNTUST': 0, 'OnlyMaster': 0, 'OnlyUnderGraduate': 0, 'OnlyNode': 0, 'Language': 'zh'}"
 header = {
@@ -34,7 +13,5 @@ header = {
 resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
 json_file = json.loads(resp.text)
 numOfStudent = json_file[0]['Restrict1']
-if int(numOfStudent) <= json_file[0]['Restrict2']:
+if int(numOfStudent) <= 30:
     print('現在的選課人數為'+numOfStudent+'，請盡快加簽')
-    message = '現在的選課人數為'+numOfStudent+'，請盡快加簽'
-    lineNotifyMessage(token, message)
