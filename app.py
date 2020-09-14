@@ -32,10 +32,13 @@ header = {
     "cookie": "_ga = GA1.3.1074523563.1555171596 _gid = GA1.3.14635500021600065844_gat_gtag_UA_134331597_1 = 1",
     "referer": "https://querycourse.ntust.edu.tw/querycourse/"
 }
-resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
-json_file = json.loads(resp.text)
-numOfStudent = json_file[0]['ChooseStudent']
-if int(numOfStudent) < 3:  # int(json_file[0]['Restrict2']):
-    print('現在的選課人數為'+numOfStudent+'，請盡快加簽')
-    message = '現在的選課人數為'+numOfStudent+'，請盡快加簽'
-    lineNotifyMessage(token, message)
+yeah = True
+while(yeah):
+    resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
+    json_file = json.loads(resp.text)
+    numOfStudent = json_file[0]['ChooseStudent']
+    if int(numOfStudent) < 3:  # int(json_file[0]['Restrict2']):
+        yeah = False
+        print('現在的選課人數為'+numOfStudent+'，請盡快加簽')
+        message = '現在的選課人數為'+numOfStudent+'，請盡快加簽'
+        lineNotifyMessage(token, message)
