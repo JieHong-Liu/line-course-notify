@@ -23,7 +23,7 @@ def lineNotifyMessage(token, msg):
 token = 'yRbTBLap7Oxm1wZdy221LH422OlJqpfJRVzO80v5vtg'  # 權杖值
 
 url = 'https://querycourse.ntust.edu.tw/querycourse/api/courses'
-payload = "{'Semester': '1091', 'CourseNo': 'BA2111701', 'CourseName': '', 'CourseTeacher': '',      'Dimension': '', 'CourseNotes': '','ForeignLanguage': 0, 'OnlyGeneral': 0, 'OnleyNTUST': 0, 'OnlyMaster': 0, 'OnlyUnderGraduate': 0, 'OnlyNode': 0, 'Language': 'zh'}"
+payload = "{'Semester': '1091', 'CourseNo': 'FE2172701', 'CourseName': '', 'CourseTeacher': '',      'Dimension': '', 'CourseNotes': '','ForeignLanguage': 0, 'OnlyGeneral': 0, 'OnleyNTUST': 0, 'OnlyMaster': 0, 'OnlyUnderGraduate': 0, 'OnlyNode': 0, 'Language': 'zh'}"
 # 日文＝'FE2172701',
 header = {
     "origin": "https://querycourse.ntust.edu.tw",
@@ -37,8 +37,8 @@ while(yeah):
     resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
     json_file = json.loads(resp.text)
     numOfStudent = json_file[0]['ChooseStudent']
-    if int(numOfStudent) < 3:  # int(json_file[0]['Restrict2']):
+    print('現在的選課人數為' + str(numOfStudent)+'，請盡快加簽')
+    if int(numOfStudent) < int(json_file[0]['Restrict1']):
         yeah = False
-        print('現在的選課人數為' + str(numOfStudent)+'，請盡快加簽')
         message = '現在的選課人數為'+str(numOfStudent)+'，請盡快加簽'
         lineNotifyMessage(token, message)
