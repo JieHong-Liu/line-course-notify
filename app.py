@@ -2,10 +2,9 @@
 import json
 import requests
 from flask import *
+import time
 
 app = Flask(__name__)
-# if __name__ == '__main__':
-#     app.run()  # correct one -> use app in all lower case
 
 
 def lineNotifyMessage(token, msg):
@@ -34,11 +33,13 @@ header = {
 }
 yeah = True
 while(yeah):
+    time.sleep(5)
     resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
     json_file = json.loads(resp.text)
     numOfStudent = json_file[0]['ChooseStudent']
-    print('現在的選課人數為' + str(numOfStudent)+'，請盡快加簽')
+    print('現在的選課人數為' + str(numOfStudent))
+
     if int(numOfStudent) < int(json_file[0]['Restrict1']):
         yeah = False
-        message = '現在的選課人數為'+str(numOfStudent)+'，請盡快加簽'
+        message = '現在的選課人數為' + str(numOfStudent) + ' 人，上限制人數為' + str(json_file[0]['Restrict1'] + ' 人，請盡快加簽。'
         lineNotifyMessage(token, message)
