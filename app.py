@@ -34,3 +34,8 @@ if int(numOfStudent) < 3:  # int(json_file[0]['Restrict2']):
     print('現在的選課人數為'+numOfStudent+'，請盡快加簽')
     message = '現在的選課人數為'+numOfStudent+'，請盡快加簽'
     lineNotifyMessage(token, message)
+
+app = create_app()  # correct one -> use app in all lower case
+
+if __name__ == '__main__':
+    app.run()  # correct one -> use app in all lower case
