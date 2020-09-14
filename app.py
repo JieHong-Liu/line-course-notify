@@ -39,6 +39,6 @@ while(yeah):
     numOfStudent = json_file[0]['ChooseStudent']
     if int(numOfStudent) < 3:  # int(json_file[0]['Restrict2']):
         yeah = False
-        print('現在的選課人數為'+numOfStudent+'，請盡快加簽')
-        message = '現在的選課人數為'+numOfStudent+'，請盡快加簽'
+        print('現在的選課人數為' + str(numOfStudent)+'，請盡快加簽')
+        message = '現在的選課人數為'+str(numOfStudent)+'，請盡快加簽'
         lineNotifyMessage(token, message)
