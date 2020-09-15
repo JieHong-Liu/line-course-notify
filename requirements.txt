@@ -4,4 +4,3 @@ requests
 twstock
 gunicorn
 APScheduler
-getTrainInfo
