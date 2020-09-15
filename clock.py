@@ -26,7 +26,7 @@ sched = BlockingScheduler()
 @sched.scheduled_job('interval', minutes=1)
 def timed_job_awake_your_app():
     print('awake app every minutes.')
-    url = 'https://line-course-notify.herokuapp.com/home'
+    url = 'https://line-course-notify.herokuapp.com'
     # url = 'https://line_course_notify.herokuapp.com/'
     r = requests.get(url)
     print("--> r.content")
