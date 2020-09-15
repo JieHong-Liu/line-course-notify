@@ -2,7 +2,6 @@
 import json
 import requests
 import time
-import datetime
 from flask import *
 
 app = Flask(__name__)
@@ -35,7 +34,6 @@ header = {
 resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
 json_file = json.loads(resp.text)
 numOfStudent = json_file[0]['ChooseStudent']
-print(datetime.datetime.now().ctime())
 print('現在的選課人數為' + str(numOfStudent))
 
 if int(numOfStudent) < int(json_file[0]['Restrict1']):
