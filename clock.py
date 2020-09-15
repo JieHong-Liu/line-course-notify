@@ -11,10 +11,18 @@ sched = BlockingScheduler()
 print(datetime.datetime.now().ctime())
 
 
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/1')
+# @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/1')
+# def scheduled_job():
+#     url = "https://line-course-notify.herokuapp.com/"
+#     connect = urllib.request.urlopen(url)
+
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/20')
 def scheduled_job():
-    url = "https://JieHong-Liu/line-course-notify.herokuapp.com/"
-    connect = urllib.request.urlopen(url)
+    url = "https://line-course-notify.herokuapp.com/"
+    conn = urllib.request.urlopen(url)
+
+    for key, value in conn.getheaders():
+        print(key, value)
 
 
 sched.start()  # 啟動排程
