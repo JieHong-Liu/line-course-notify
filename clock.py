@@ -1,5 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-import requests
+import urllib.request
 import datetime
 
 
@@ -11,26 +11,14 @@ sched = BlockingScheduler()
 # print(datetime.datetime.now().ctime())
 
 
-# # @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/1')
-# # def timed_job_awake_your_app():
-# #     print('awake app every minute.')
-# #     url = 'https://app.herokuapp.com/'
-# #     r = requests.get(url)
-# # print("--> r.content")
-# # print(r.content)
-
-
-# sched.start()  # 啟動排程
-
-
-@sched.scheduled_job('interval', minutes=1)
-def timed_job_awake_your_app():
+@sched.scheduled_job('cron', minute='*/1')
+def scheduled_job():
     print('awake app every minutes.')
     url = 'https://line-course-notify.herokuapp.com/'
-    # url = 'https://line_course_notify.herokuapp.com/'
-    r = requests.get(url)
-    print("--> r.content")
-    print(r.content)
+    conn = urllib.request.urlopen(url)
+
+    for key, value in conn.getheaders():
+        print(key, value)
 
 
 sched.start()
