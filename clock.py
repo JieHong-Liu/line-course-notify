@@ -13,7 +13,7 @@ print(datetime.datetime.now().ctime())
 
 @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/1')
 def scheduled_job():
-    url = "https://line-course-notify.herokuapp.com/"
+    url = "https://app.herokuapp.com/"
     conn = urllib.request.urlopen(url)
 
     for key, value in conn.getheaders():
