@@ -1,5 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-import urllib.request
+import urllib.request.urlopen
 import datetime
 
 
