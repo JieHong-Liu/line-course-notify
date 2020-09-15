@@ -13,17 +13,11 @@ print(datetime.datetime.now().ctime())
 
 @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/1')
 def timed_job_awake_your_app():
-    print('awake app every 10 minutes.')
-    url = 'https://line-course-notify.herokuapp.com/'
+    print('awake app every minute.')
+    url = 'https://app.herokuapp.com/'
     r = requests.get(url)
     # print("--> r.content")
     # print(r.content)
-#  def scheduled_job():
-#     url = "https://line-course-notify.herokuapp.com/"
-#     conn = urllib.request.urlopen(url)
-
-#     for key, value in conn.getheaders():
-#         print(key, value)
 
 
 sched.start()  # 啟動排程
