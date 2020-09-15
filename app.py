@@ -2,7 +2,8 @@
 import json
 import requests
 import time
-from flask import *
+from flask import Flask, render_template, request, url_for, redirect
+from getTrainInfo import getTrainInfo
 
 app = Flask(__name__)
 
@@ -39,3 +40,21 @@ print('現在的選課人數為' + str(numOfStudent))
 if int(numOfStudent) < int(json_file[0]['Restrict1']):
     message = '現在的選課人數為'+str(numOfStudent)+' 人，上限人數為，請盡快加簽'
     lineNotifyMessage(token, message)
+
+
+@app.route('/')
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/map', methods=['GET'])
+def findTrain():
+    line = request.args.get('line')
+    direction = request.args.get('direction')
+    coords = getTrainInfo(line, direction)
+    return render_template('map.html', coords=coords)
+
+
+if __name__ == '__main__':
+    app.run()
