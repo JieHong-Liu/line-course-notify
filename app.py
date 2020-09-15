@@ -1,10 +1,17 @@
-﻿from bs4 import BeautifulSoup
+﻿from __future__ import unicode_literals
+import os
+from bs4 import BeautifulSoup
 import json
 import requests
 import time
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, abort
 
 app = Flask(__name__)
+
+
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 
 def lineNotifyMessage(token, msg):
@@ -23,7 +30,6 @@ token = 'yRbTBLap7Oxm1wZdy221LH422OlJqpfJRVzO80v5vtg'  # 權杖值
 
 url = 'https://querycourse.ntust.edu.tw/querycourse/api/courses'
 payload = "{'Semester': '1091', 'CourseNo': 'FE1821702', 'CourseName': '', 'CourseTeacher': '',      'Dimension': '', 'CourseNotes': '','ForeignLanguage': 0, 'OnlyGeneral': 0, 'OnleyNTUST': 0, 'OnlyMaster': 0, 'OnlyUnderGraduate': 0, 'OnlyNode': 0, 'Language': 'zh'}"
-# 日文＝'FE2172701',
 header = {
     "origin": "https://querycourse.ntust.edu.tw",
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36 Edg/84.0.522.40",
@@ -39,12 +45,6 @@ print('現在的選課人數為' + str(numOfStudent))
 if int(numOfStudent) < int(json_file[0]['Restrict1']):
     message = '現在的選課人數為'+str(numOfStudent)+' 人，上限人數為，請盡快加簽'
     lineNotifyMessage(token, message)
-
-
-@app.route('/')
-@app.route('/index')
-def index():
-    return render_template('index.html')
 
 
 if __name__ == '__main__':
