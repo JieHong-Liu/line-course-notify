@@ -5,8 +5,6 @@ import time
 from flask import *
 
 app = Flask(__name__)
-# if __name__ == '__main__':
-#     app.run()  # correct one -> use app in all lower case
 
 
 def lineNotifyMessage(token, msg):
@@ -33,14 +31,11 @@ header = {
     "cookie": "_ga = GA1.3.1074523563.1555171596 _gid = GA1.3.14635500021600065844_gat_gtag_UA_134331597_1 = 1",
     "referer": "https://querycourse.ntust.edu.tw/querycourse/"
 }
-yeah = True
-while(yeah):
-    resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
-    json_file = json.loads(resp.text)
-    numOfStudent = json_file[0]['ChooseStudent']
-    print('現在的選課人數為' + str(numOfStudent))
-    if int(numOfStudent) < int(json_file[0]['Restrict1']):
-        yeah = False
-        message = '現在的選課人數為'+str(numOfStudent)+' 人，上限制人數為，請盡快加簽'
-        lineNotifyMessage(token, message)
-    time.sleep(10)
+resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
+json_file = json.loads(resp.text)
+numOfStudent = json_file[0]['ChooseStudent']
+print('現在的選課人數為' + str(numOfStudent))
+
+if int(numOfStudent) < int(json_file[0]['Restrict1']):
+    message = '現在的選課人數為'+str(numOfStudent)+' 人，上限制人數為，請盡快加簽'
+    lineNotifyMessage(token, message)
