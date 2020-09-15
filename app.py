@@ -5,8 +5,6 @@ import time
 from flask import *
 
 app = Flask(__name__)
-# if __name__ == '__main__':
-#     app.run()  # correct one -> use app in all lower case
 
 
 def lineNotifyMessage(token, msg):
@@ -37,6 +35,7 @@ resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
 json_file = json.loads(resp.text)
 numOfStudent = json_file[0]['ChooseStudent']
 print('現在的選課人數為' + str(numOfStudent))
+
 if int(numOfStudent) < int(json_file[0]['Restrict1']):
     message = '現在的選課人數為'+str(numOfStudent)+' 人，上限制人數為，請盡快加簽'
     lineNotifyMessage(token, message)
