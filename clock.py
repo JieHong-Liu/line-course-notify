@@ -1,6 +1,6 @@
-from apscheduler.schedulers.blocking import BlockingScheduler
-import requests
+import requests
 import datetime
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 
 # 宣告一個排程
