@@ -1,3 +1,3 @@
-web: gunicorn app:app --log-file=-
+web: gunicorn app:app
 clock: python clock.py
 
