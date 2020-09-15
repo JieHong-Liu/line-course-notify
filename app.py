@@ -3,7 +3,6 @@ import json
 import requests
 import time
 from flask import Flask, render_template, request, url_for, redirect
-from getTrainInfo import getTrainInfo
 
 app = Flask(__name__)
 
@@ -46,14 +45,6 @@ if int(numOfStudent) < int(json_file[0]['Restrict1']):
 @app.route('/index')
 def index():
     return render_template('index.html')
-
-
-@app.route('/map', methods=['GET'])
-def findTrain():
-    line = request.args.get('line')
-    direction = request.args.get('direction')
-    coords = getTrainInfo(line, direction)
-    return render_template('map.html', coords=coords)
 
 
 if __name__ == '__main__':
