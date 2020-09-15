@@ -1,29 +1,20 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 import urllib.request
 import datetime
-from flask import Flask
-
+import os
 
 # # 宣告一個排程
 sched = BlockingScheduler()
 
-# # 定義排程 : 在周一至周五，每 1 分鐘就做一次 def scheduled_jog()
+# # 定義排程 : 在周一至周五，每分鐘就做一次 def scheduled_jog()
 
 # print(datetime.datetime.now().ctime())
-app = Flask(__name__)
 
 
-@sched.scheduled_job('cron', minute='*/1')
+@sched.scheduled_job('interval', minutes=1)
 def scheduled_job():
     print('awake app every minutes.')
-    url = 'https://line-course-notify.herokuapp.com/'
-    conn = urllib.request.urlopen(url)
-
-    for key, value in conn.getheaders():
-        print(key, value)
+    os.system("python app.py")
 
 
-if __name__ == '__main__':
-    sched.init_app(app)
-    sched.start()
-    app.run()
+sched.start()
