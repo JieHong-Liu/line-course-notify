@@ -22,7 +22,7 @@ def lineNotifyMessage(token, msg):
 token = 'yRbTBLap7Oxm1wZdy221LH422OlJqpfJRVzO80v5vtg'  # 權杖值
 
 url = 'https://querycourse.ntust.edu.tw/querycourse/api/courses'
-payload = "{'Semester': '1091', 'CourseNo': 'FE2172701', 'CourseName': '', 'CourseTeacher': '',      'Dimension': '', 'CourseNotes': '','ForeignLanguage': 0, 'OnlyGeneral': 0, 'OnleyNTUST': 0, 'OnlyMaster': 0, 'OnlyUnderGraduate': 0, 'OnlyNode': 0, 'Language': 'zh'}"
+payload = "{'Semester': '1091', 'CourseNo': 'FE1821702', 'CourseName': '', 'CourseTeacher': '',      'Dimension': '', 'CourseNotes': '','ForeignLanguage': 0, 'OnlyGeneral': 0, 'OnleyNTUST': 0, 'OnlyMaster': 0, 'OnlyUnderGraduate': 0, 'OnlyNode': 0, 'Language': 'zh'}"
 # 日文＝'FE2172701',
 header = {
     "origin": "https://querycourse.ntust.edu.tw",
@@ -37,5 +37,5 @@ numOfStudent = json_file[0]['ChooseStudent']
 print('現在的選課人數為' + str(numOfStudent))
 
 if int(numOfStudent) < int(json_file[0]['Restrict1']):
-    message = '現在的選課人數為'+str(numOfStudent)+' 人，上限制人數為，請盡快加簽'
+    message = '現在的選課人數為'+str(numOfStudent)+' 人，上限人數為，請盡快加簽'
     lineNotifyMessage(token, message)
