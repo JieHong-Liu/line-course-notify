@@ -30,7 +30,7 @@ token = 'yRbTBLap7Oxm1wZdy221LH422OlJqpfJRVzO80v5vtg'  # 權杖值
 
 url = 'https://querycourse.ntust.edu.tw/querycourse/api/courses'
 
-payload = "{'Semester': '1091', 'CourseNo': 'FE1821702', 'CourseName': '', 'CourseTeacher': '',      'Dimension': '', 'CourseNotes': '','ForeignLanguage': 0, 'OnlyGeneral': 0, 'OnleyNTUST': 0, 'OnlyMaster': 0, 'OnlyUnderGraduate': 0, 'OnlyNode': 0, 'Language': 'zh'}"
+payload = "{'Semester': '1091', 'CourseNo': 'EE3409302', 'CourseName': '', 'CourseTeacher': '',      'Dimension': '', 'CourseNotes': '','ForeignLanguage': 0, 'OnlyGeneral': 0, 'OnleyNTUST': 0, 'OnlyMaster': 0, 'OnlyUnderGraduate': 0, 'OnlyNode': 0, 'Language': 'zh'}"
 
 header = {
     "origin": "https://querycourse.ntust.edu.tw",
