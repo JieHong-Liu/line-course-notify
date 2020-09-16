@@ -39,8 +39,8 @@ header = {
     "cookie": "_ga = GA1.3.1074523563.1555171596 _gid = GA1.3.14635500021600065844_gat_gtag_UA_134331597_1 = 1",
     "referer": "https://querycourse.ntust.edu.tw/querycourse/"
 }
-className = "新聞英文"
-courseNo = 'FE1821702'
+className = "數位系統設計實習"
+courseNo = 'EE3409302'
 resp = requests.post(url, data=payload.encode('utf-8'), headers=header)
 json_file = json.loads(resp.text)
 numOfStudent = json_file[0]['ChooseStudent']
