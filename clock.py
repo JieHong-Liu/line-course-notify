@@ -11,7 +11,7 @@ sched = BlockingScheduler()
 # print(datetime.datetime.now().ctime())
 
 
-@sched.scheduled_job('interval', minutes=1)
+@sched.scheduled_job('interval', minutes=2)
 def scheduled_job():
     print('awake app every minutes.')
     os.system("gunicorn app:app")
